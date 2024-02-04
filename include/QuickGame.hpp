@@ -581,7 +581,11 @@ namespace Primitive {
  * 
  * returns int < 0 on failure.
  */
-int init();
+// int init();
+inline auto init() -> void {
+    if(QuickGame_Primitive_Init() < 0)
+        throw std::runtime_error("Failed to initialise Primitives!");
+}
 
 /**
  * @brief Terminate Primitives
@@ -595,7 +599,9 @@ void terminate();
  * @param transform Position, Rotation, Size
  * @param color Color to draw with
  */
-void draw_rectangle(QGTransform2D transform, QGColor color);
+inline auto draw_rectangle(QGTransform2D transform, QGColor color) -> void {
+    QuickGame_Primitive_Draw_Rectangle(transform, color);
+}
 
 /**
  * @brief Draw a triangle with a given transform and color
@@ -603,7 +609,9 @@ void draw_rectangle(QGTransform2D transform, QGColor color);
  * @param transform Position, Rotation, Size
  * @param color Color to draw with
  */
-void draw_triangle(QGTransform2D transform, QGColor color);
+inline auto draw_triangle(QGTransform2D transform, QGColor color) -> void {
+    QuickGame_Primitive_Draw_Triangle(transform, color);
+}
 
 /**
  * @brief Draw a circle with a given transform and color
@@ -611,7 +619,10 @@ void draw_triangle(QGTransform2D transform, QGColor color);
  * @param transform Position, Rotation, Size
  * @param color Color to draw with
  */
-void draw_circle(QGTransform2D transform, QGColor color);
+inline auto draw_circle(QGTransform2D transform, QGColor color) -> void{
+    QuickGame_Primitive_Draw_Circle(transform, color);
+}
+
 }
 
 namespace Input {
